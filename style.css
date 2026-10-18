@@ -11,6 +11,7 @@
   --gray: #5c626b;
   --white: #ffffff;
   --vk: #3b5998;
+  --tg: #0088cc; /* Синий цвет телеграма */
   
   --radius: 24px;
   --shadow: 0 8px 30px rgba(0,0,0,0.08);
@@ -303,11 +304,21 @@ header h1 {
 }
 .btn-primary { background: var(--pink-dark); color: white; box-shadow: 0 6px 20px rgba(201, 24, 74, 0.3); }
 .btn-primary:hover { background: var(--pink-main); transform: translateY(-3px); }
+.btn-tg-channel { background: var(--tg); color: white; box-shadow: 0 6px 20px rgba(0, 136, 204, 0.3); }
+.btn-tg-channel:hover { background: #0099e6; transform: translateY(-3px); }
 .btn-vk { background: var(--vk); color: white; box-shadow: 0 6px 20px rgba(59, 89, 152, 0.3); }
 .btn-vk:hover { background: #4a69bd; transform: translateY(-3px); }
 
 /* CONTACTS */
-.contacts-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; max-width: 1000px; margin: 0 auto; }
+.contacts-grid { 
+  display: grid; 
+  /* Изменил на 5 колонок, чтобы все поместились в ряд, или auto-fit для переноса */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+  gap: 20px; 
+  max-width: 1100px; 
+  margin: 0 auto; 
+  justify-content: center;
+}
 .contact-card {
   background: var(--white);
   border-radius: var(--radius); padding: 30px 20px;
@@ -317,6 +328,7 @@ header h1 {
 }
 .contact-card.vk { border-bottom-color: var(--vk); }
 .contact-card.platform { border-bottom-color: var(--green-main); }
+.contact-card.tg-channel { border-bottom-color: var(--tg); }
 .contact-icon { font-size: 2.2em; margin-bottom: 15px; display: block; }
 .contact-card h4 { font-size: 0.85em; color: var(--gray); margin-bottom: 5px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
 .contact-card .value { font-size: 1.05em; font-weight: 800; color: var(--dark); word-break: break-word; }
@@ -359,7 +371,7 @@ footer .accent { color: var(--green-main); font-weight: 700; }
   .about-wrapper { grid-template-columns: 1fr; text-align: center; gap: 30px; }
   .about-photo { max-width: 300px; margin: 0 auto; }
   .features { justify-content: center; }
-  .contacts-grid { grid-template-columns: repeat(2, 1fr); }
+  .contacts-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
 @media (max-width: 900px) {
@@ -379,8 +391,8 @@ footer .accent { color: var(--green-main); font-weight: 700; }
   .cta-section { padding: 40px 20px; }
   .cta-buttons { flex-direction: column; }
   .btn { width: 100%; }
-  .contacts-grid { grid-template-columns: 1fr; }
   
+  .contacts-grid { grid-template-columns: 1fr; }
   .services-grid { grid-template-columns: 1fr; }
   .service-card-center { grid-column: auto; max-width: none; }
   

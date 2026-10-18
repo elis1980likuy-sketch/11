@@ -38,3 +38,10 @@ modal.addEventListener("click", function(e) {
     modal.style.display = "none";
   }
 });
+
+// Закрытие по кнопке Esc
+document.addEventListener("keydown", function(e) {
+  if (e.key === "Escape" && modal.style.display === "block") {
+    modal.style.display = "none";
+  }
+});
