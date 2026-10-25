@@ -52,26 +52,28 @@ body::after {
   bottom: 10%; right: 0%; 
 }
 
-/* --- НОВЫЕ МАТЕМАТИЧЕСКИЕ ЭЛЕМЕНТЫ ФОНА --- */
+/* --- МАТЕМАТИЧЕСКИЕ ЭЛЕМЕНТЫ ФОНА --- */
 .bg-elements {
   position: fixed;
   top: 0; left: 0; width: 100%; height: 100%;
-  pointer-events: none; /* Чтобы не мешали кликать по ссылкам */
+  pointer-events: none;
   z-index: -1;
   overflow: hidden;
+  /* Плавный переход для эффекта параллакса через JS */
+  transition: transform 0.1s ease-out; 
 }
 
 .bg-item {
   position: absolute;
   color: var(--pink-dark);
-  opacity: 0.12; /* Полупрозрачные, чтобы не отвлекать */
+  opacity: 0.12;
   font-weight: 700;
   font-family: 'Unbounded', sans-serif;
   filter: blur(1px);
-  animation: float 6s ease-in-out infinite;
+  /* Анимация парения (парения) */
+  animation: float 8s ease-in-out infinite;
 }
 
-/* Немного разные цвета для разнообразия */
 .bg-item:nth-child(even) {
   color: var(--green-dark);
   opacity: 0.1;
@@ -85,15 +87,14 @@ body::after {
 
 .bg-meme {
   font-size: 3.5rem;
-  opacity: 0.25; /* Мемы чуть ярче, чтобы их было видно */
+  opacity: 0.25;
   filter: grayscale(20%) blur(1px);
-  animation: float 8s ease-in-out infinite;
+  animation: float 10s ease-in-out infinite;
 }
 
-/* Легкое парение */
 @keyframes float {
   0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(10deg); }
+  50% { transform: translateY(-25px) rotate(5deg); }
 }
 
 /* --- ОСНОВНОЙ КОНТЕНТ --- */
@@ -433,6 +434,5 @@ footer .accent { color: var(--green-main); font-weight: 700; }
   
   .close { top: 15px; right: 25px; font-size: 35px; }
   
-  /* На мобильных прячем некоторые мемы, чтобы не мешали */
   .bg-meme { font-size: 2rem; opacity: 0.15; }
 }
