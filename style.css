@@ -11,7 +11,7 @@
   --gray: #5c626b;
   --white: #ffffff;
   --vk: #3b5998;
-  --tg: #0088cc; /* Синий цвет телеграма */
+  --tg: #0088cc;
   
   --radius: 24px;
   --shadow: 0 8px 30px rgba(0,0,0,0.08);
@@ -28,37 +28,77 @@ body {
   padding-top: 65px;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  position: relative;
 }
 
-/* --- ФОНОВЫЕ ПЯТНА (адаптивные под любой экран) --- */
+/* --- ФОНОВЫЕ ПЯТНА --- */
 body::before, body::after {
   content: '';
   position: fixed;
   border-radius: 50%;
   filter: blur(140px);
-  z-index: -1;
+  z-index: -2;
   opacity: 0.85;
   pointer-events: none;
 }
-
 body::before {
-  width: 50vw; 
-  height: 50vw;
+  width: 50vw; height: 50vw;
   background: #ffb6c1;
-  top: 10%; 
-  left: 0%; 
+  top: 10%; left: 0%; 
 }
-
 body::after {
-  width: 50vw; 
-  height: 50vw;
+  width: 50vw; height: 50vw;
   background: #c1e1c1;
-  bottom: 10%; 
-  right: 0%; 
+  bottom: 10%; right: 0%; 
 }
 
+/* --- НОВЫЕ МАТЕМАТИЧЕСКИЕ ЭЛЕМЕНТЫ ФОНА --- */
+.bg-elements {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none; /* Чтобы не мешали кликать по ссылкам */
+  z-index: -1;
+  overflow: hidden;
+}
+
+.bg-item {
+  position: absolute;
+  color: var(--pink-dark);
+  opacity: 0.12; /* Полупрозрачные, чтобы не отвлекать */
+  font-weight: 700;
+  font-family: 'Unbounded', sans-serif;
+  filter: blur(1px);
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Немного разные цвета для разнообразия */
+.bg-item:nth-child(even) {
+  color: var(--green-dark);
+  opacity: 0.1;
+  animation-delay: -2s;
+}
+.bg-item:nth-child(3n) {
+  color: var(--dark);
+  opacity: 0.08;
+  animation-delay: -4s;
+}
+
+.bg-meme {
+  font-size: 3.5rem;
+  opacity: 0.25; /* Мемы чуть ярче, чтобы их было видно */
+  filter: grayscale(20%) blur(1px);
+  animation: float 8s ease-in-out infinite;
+}
+
+/* Легкое парение */
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(10deg); }
+}
+
+/* --- ОСНОВНОЙ КОНТЕНТ --- */
 .container { max-width: 1140px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
-section { padding: 90px 0; }
+section { padding: 90px 0; position: relative; }
 section.bg-alt { background: transparent; }
 
 h1, h2, h3, .badge, .top-bar, .btn, .price-value, .free-tag {
@@ -83,7 +123,6 @@ h2::after {
   margin: 20px auto 0;
 }
 
-/* --- ЭФФЕКТ НАВЕДЕНИЯ --- */
 .hover-scale {
   transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease;
 }
@@ -91,7 +130,6 @@ h2::after {
   transform: translateY(-8px) scale(1.03);
   box-shadow: var(--shadow-hover);
 }
-
 .zoomable { cursor: zoom-in; }
 
 /* TOP BAR */
@@ -120,9 +158,7 @@ h2::after {
   font-weight: 600;
   transition: all 0.3s;
 }
-.top-bar-btn:hover { 
-  background: var(--pink-dark); 
-}
+.top-bar-btn:hover { background: var(--pink-dark); }
 
 /* HEADER */
 header {
@@ -312,7 +348,6 @@ header h1 {
 /* CONTACTS */
 .contacts-grid { 
   display: grid; 
-  /* Изменил на 5 колонок, чтобы все поместились в ряд, или auto-fit для переноса */
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
   gap: 20px; 
   max-width: 1100px; 
@@ -381,20 +416,4 @@ footer .accent { color: var(--green-main); font-weight: 700; }
 
 @media (max-width: 640px) {
   body { padding-top: 110px; }
-  .top-bar { flex-direction: column; gap: 10px; padding: 15px; }
-  .top-bar-btn { width: 100%; text-align: center; }
-  header h1 { font-size: 2.8em; }
-  .avatar { width: 140px; height: 140px; }
-  h2 { font-size: 1.8em; }
-  section { padding: 60px 0; }
-  .about-wrapper { padding: 25px; }
-  .cta-section { padding: 40px 20px; }
-  .cta-buttons { flex-direction: column; }
-  .btn { width: 100%; }
-  
-  .contacts-grid { grid-template-columns: 1fr; }
-  .services-grid { grid-template-columns: 1fr; }
-  .service-card-center { grid-column: auto; max-width: none; }
-  
-  .close { top: 15px; right: 25px; font-size: 35px; }
-}
+  .top-bar { flex-direction: column; gap: 10px; padding: 15px;
