@@ -13,13 +13,24 @@ document.querySelectorAll(
   observer.observe(el);
 });
 
-// --- 2. Увеличение картинок (Лайтбокс) ---
+// --- 2. Параллакс для фоновых элементов (движение при скролле) ---
+const bgParallax = document.getElementById('bg-parallax');
+window.addEventListener('scroll', () => {
+  // Получаем текущую прокрутку
+  let scrollY = window.scrollY;
+  
+  // Двигаем контейнер с фоновыми элементами вверх (скорость 0.4)
+  if (bgParallax) {
+    bgParallax.style.transform = `translateY(${scrollY * 0.4}px)`;
+  }
+});
+
+// --- 3. Увеличение картинок (Лайтбокс) ---
 const modal = document.getElementById("imageModal");
 const modalImg = document.getElementById("zoomedImage");
 const closeBtn = document.querySelector(".close");
 const zoomableImages = document.querySelectorAll(".zoomable");
 
-// Открытие при клике на картинку
 zoomableImages.forEach(img => {
   img.addEventListener("click", function() {
     modal.style.display = "block";
@@ -27,19 +38,16 @@ zoomableImages.forEach(img => {
   });
 });
 
-// Закрытие при клике на крестик
 closeBtn.addEventListener("click", function() {
   modal.style.display = "none";
 });
 
-// Закрытие при клике на пустое место вокруг картинки
 modal.addEventListener("click", function(e) {
   if (e.target === modal) {
     modal.style.display = "none";
   }
 });
 
-// Закрытие по кнопке Esc
 document.addEventListener("keydown", function(e) {
   if (e.key === "Escape" && modal.style.display === "block") {
     modal.style.display = "none";
