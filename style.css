@@ -416,4 +416,23 @@ footer .accent { color: var(--green-main); font-weight: 700; }
 
 @media (max-width: 640px) {
   body { padding-top: 110px; }
-  .top-bar { flex-direction: column; gap: 10px; padding: 15px;
+  .top-bar { flex-direction: column; gap: 10px; padding: 15px; }
+  .top-bar-btn { width: 100%; text-align: center; }
+  header h1 { font-size: 2.8em; }
+  .avatar { width: 140px; height: 140px; }
+  h2 { font-size: 1.8em; }
+  section { padding: 60px 0; }
+  .about-wrapper { padding: 25px; }
+  .cta-section { padding: 40px 20px; }
+  .cta-buttons { flex-direction: column; }
+  .btn { width: 100%; }
+  
+  .contacts-grid { grid-template-columns: 1fr; }
+  .services-grid { grid-template-columns: 1fr; }
+  .service-card-center { grid-column: auto; max-width: none; }
+  
+  .close { top: 15px; right: 25px; font-size: 35px; }
+  
+  /* На мобильных прячем некоторые мемы, чтобы не мешали */
+  .bg-meme { font-size: 2rem; opacity: 0.15; }
+}
